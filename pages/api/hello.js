@@ -10,13 +10,15 @@ export default async (req, res) => {
     console.error("Unable to connect to the database:", error);
   }
   // res.status(200).json({ name: 'John Doe' })
-  try {
-    const busdata = await db.query("SELECT * FROM bus WHERE active=1", {
-      type: db.QueryTypes.SELECT,
-    });
-    res.status(200).json({ busdata: busdata, success: 1 });
-  } catch (err) {
-    console.log(err);
-    res.json({ error: 1 });
-  }
+  // try {
+  //   const busdata = await db.query("SELECT * FROM bus WHERE active=1", {
+  //     type: db.QueryTypes.SELECT,
+  //   });
+  //   res.status(200).json({ busdata: busdata, success: 1 });
+  // } catch (err) {
+  //   console.log(err);
+  //   res.json({ error: 1 });
+  // }
+  const a = req.body.test
+  res.status(200).json({ name: 'John Doe', test: a })
 };

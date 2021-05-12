@@ -1,0 +1,106 @@
+/* HOME HEADER */
+.header {
+  min-width: fit-content;
+  background: linear-gradient(180deg, #071332 50%, #132e74 100%);
+  padding: 0 100px 30px 100px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 15px 0;
+}
+
+.logo {
+  font-size: 20px;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+.navList {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+.navLink {
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+}
+
+.navLink:hover {
+  color: #b9b3f8;
+}
+
+/* HOME SEARCH TRIP */
+.searchTrip {
+  border-radius: 5px;
+  background-color: white;
+  padding: 20px 20px;
+  margin-top: 15px;
+}
+
+.searchTitle {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formInputGroup {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #838383;
+  border-radius: 5px;
+  padding: 10px 20px 25px 20px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.formText {
+  font-size: 26px;
+  border: 0;
+  font-weight: 700;
+  font-family: "Manrope", sans-serif;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.formText[type="text"]:focus {
+  outline: none;
+}
+
+.submit {
+  font-size: 18px;
+  color: white;
+  background-color: #412ff8;
+  border: 0;
+  padding: 10px 50px;
+  border-radius: 5px;
+}
+
+.submit:hover {
+  opacity: 0.95;
+  cursor: pointer;
+}
