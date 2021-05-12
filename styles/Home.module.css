@@ -1,0 +1,67 @@
+.howTo {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.subTitle {
+  font-size: 16px;
+  text-align: center;
+  color: #412ff8;
+  font-weight: 700;
+}
+
+.title {
+  font-size: 40px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.caption {
+  padding: 0 200px;
+  text-align: center;
+}
+
+.howToGrid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+}
+
+.howToGridTtem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 50px;
+  margin-right: 30px;
+  margin-left: 30px;
+  width: 250px;
+}
+
+.howToCaption {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.whatSpecialContainer{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 0 200px;
+  margin-top: 50px;
+  row-gap: 50px;
+  column-gap: 30px;
+}
+
+.whatSpecialTitle{
+  margin-top: 20px;
+}
+
+.whatSpecialCaption{
+  max-width: 400px;
+}
+
+.imgRight{
+  margin: 0 auto;
+}

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Layout from "../../components/layout/layout";
 
 function AllBusTicketPage(props) {
   const router = useRouter();
@@ -6,18 +7,16 @@ function AllBusTicketPage(props) {
   // console.log(router.query)
   console.log(props.trip);
   return (
-    <>
+    <Layout>
       <div>BUS TICKET PAGE</div>
       {from} {to}
-    </>
+    </Layout>
   );
 }
 
 export async function getServerSideProps(context) {
-  
   const res = await fetch(
-    "http://localhost:3000/api/trip?" +
-      new URLSearchParams(context.query)
+    "http://localhost:3000/api/trip?" + new URLSearchParams(context.query)
   );
   const data = await res.json();
 
