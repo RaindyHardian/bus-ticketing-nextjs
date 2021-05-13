@@ -1,3 +1,5 @@
+import Navbar from "./navbar";
+
 function Layout({ children, home }) {
   if (home) {
     return (
@@ -8,6 +10,7 @@ function Layout({ children, home }) {
   } else {
     return (
       <div>
+        <Navbar/>
         {children}
       </div>
     );

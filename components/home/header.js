@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import styles from "./header.module.css";
 
 function Header() {
+  const router = useRouter();
   const fromRef = useRef();
   const toRef = useRef();
   const dateRef = useRef();
@@ -14,6 +16,9 @@ function Header() {
       fromRef.current.value,
       toRef.current.value,
       dateRef.current.value
+    );
+    router.push(
+      `/bus-ticket?from=${fromRef.current.value}&to=${toRef.current.value}&trip_date=${dateRef.current.value}`
     );
   }
 
