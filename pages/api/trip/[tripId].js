@@ -2,7 +2,7 @@ import db from "../../../db/config";
 
 async function handler(req, res) {
   const trip_id = req.query.tripId;
-  
+
   try {
     let tripdata = await db.query(
       "SELECT * FROM trip JOIN bus ON (trip.bus_id = bus.bus_id) WHERE trip_id=:trip_id;",
@@ -42,14 +42,14 @@ async function handler(req, res) {
       }
     }
 
-    res.json({
+    res.status(200).json({
       trip: tripdata[0],
       seat: seatdata,
       ticket: ticketdata,
     });
   } catch (err) {
     console.log(err);
-    res.json({ error: 1 });
+    res.status(500).json({ message: "Getting trip failed." });
   }
 }
 export default handler;

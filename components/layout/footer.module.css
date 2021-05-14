@@ -25,8 +25,12 @@
   color: black;
 }
 
-.footerLink:hover{
+.footerLink:hover {
   color: #412ff8;
   cursor: pointer;
   text-decoration: underline;
+}
+
+.address {
+  word-spacing: 5px;
 }

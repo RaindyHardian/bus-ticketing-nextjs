@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 30px 100px;
+  padding: 35px 100px;
   background-color: #071332;
 }
 
@@ -34,12 +34,28 @@
   opacity: 0.9;
 }
 
+.errorMessage{
+  background-color: #cbd5e0;
+  position: absolute;
+  color: #333740;
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 10px;
+}
+
 /* MAIN */
 .mainContainer {
   display: grid;
   grid-template-columns: max-content 1fr;
   column-gap: 50px;
   padding: 20px 100px;
+}
+
+.noTripFound{
+  font-size: 20px;
+  text-align: center;
+  font-weight: 600;
 }
 
 /* LEFT OPTION */

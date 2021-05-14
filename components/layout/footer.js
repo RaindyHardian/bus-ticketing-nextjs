@@ -70,7 +70,7 @@ export default function Footer() {
               <a className={styles.footerLink}>024 7XXXXXXX</a>
             </Link>
           </li>
-          <li>
+          <li className={styles.address}>
             Jalan Kamurocho Hills No. 1 RT 02/RW 03, Kec. Semarang Tengah, Kota
             Semarang, Jawa Tengah 5XXXX
           </li>
