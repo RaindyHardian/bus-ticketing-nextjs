@@ -1,0 +1,32 @@
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 100px;
+  column-gap: 50px;
+  margin-top: 100px;
+  background-color: rgb(240, 240, 240);
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footerList {
+  list-style-type: none;
+}
+
+.footerList > li {
+  margin-bottom: 5px;
+}
+
+.footerLink {
+  text-decoration: none;
+  color: black;
+}
+
+.footerLink:hover{
+  color: #412ff8;
+  cursor: pointer;
+  text-decoration: underline;
+}
