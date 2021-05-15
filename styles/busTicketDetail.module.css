@@ -1,0 +1,115 @@
+.container {
+  margin: 20px 100px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+/*  HEADER */
+.header {
+  padding: 40px 50px;
+  border-bottom: 1px solid lightgray;
+}
+
+.headerTitle {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.cardNext {
+  margin-top: 10px;
+}
+
+.time {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.location {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.seat {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #412ff8;
+}
+
+/* MAIN SEAT GRID */
+.content {
+  display: flex;
+  justify-content: center;
+  padding: 40px 50px;
+}
+
+.labelFront {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.grid_container {
+  display: grid;
+  grid-gap: 5px;
+  border: 1px solid rgb(120, 120, 120);
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.selected {
+  margin-left: 50px;
+  padding: 1px;
+  text-align: center;
+}
+
+.selected_title {
+  border: 1px solid black;
+  margin-bottom: 5px;
+  padding: 2px 10px;
+  font-weight: 700;
+}
+
+.selected_list {
+  list-style-type: none;
+}
+
+.selected_list_item {
+  border: 1px solid black;
+  margin-bottom: 5px;
+  padding: 2px;
+}
+
+.orderButton {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #412ff8;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 7px 35px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.orderButton:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.orderButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

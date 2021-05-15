@@ -1,0 +1,45 @@
+.seatpickeritem {
+  text-align: center;
+  border: 1px solid rgb(120, 120, 120);
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+.seatpickeritem:hover {
+  background-color: #968df8;
+  color: white;
+  cursor: pointer;
+}
+
+.seatpickeritem__booked {
+  text-align: center;
+  border: 1px solid rgb(120, 120, 120);
+  width: 50px;
+  height: 50px;
+  background-color: #d9d9d9;
+  color: black;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.seatpickeritem__selected {
+  text-align: center;
+  border: 1px solid rgb(120, 120, 120);
+  width: 50px;
+  height: 50px;
+  background-color: #412ff8;
+  color: white;
+  font-weight: 700;
+  border-radius: 5px;
+}
+.seatpickeritem__selected:hover {
+  opacity: 0.95;
+  cursor: pointer;
+}
+
+.sseatpickeritem__disabled {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+}

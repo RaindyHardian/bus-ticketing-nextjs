@@ -204,7 +204,12 @@ function AllBusTicketPage(props) {
           <div>
             <p className={styles.seat}>{item.total_seat} Seat Bus</p>
             <p className={styles.price}>{formatter.format(item.fare)}</p>
-            <button className={styles.chooseButton}>Choose</button>
+            <button
+              className={styles.chooseButton}
+              onClick={() => router.push(`/bus-ticket/${item.trip_id}`)}
+            >
+              Choose
+            </button>
           </div>
         </div>
       </div>
@@ -378,8 +383,7 @@ function AllBusTicketPage(props) {
           {props.trip.length === 0 ? (
             <div className={styles.noTripFound}>Sorry, no trips were found</div>
           ) : (
-            pickupOption !== "" &&
-            dropOption !== "" &&
+            (pickupOption !== "" || dropOption !== "") &&
             tripFiltered.length === 0 && (
               <div className={styles.noTripFound}>
                 Sorry, no trips were found
@@ -393,7 +397,6 @@ function AllBusTicketPage(props) {
 
           {(pickupOption !== "" || dropOption !== "") &&
             tripFiltered.map((item) => showTicketList(item))}
-            
         </div>
       </div>
     </Layout>
