@@ -28,12 +28,12 @@ function Header() {
         <div className={styles.logo}>BookYourSeat</div>
         <ul className={styles.navList}>
           <li>
-            <Link href="/login">
+            <Link href="/account/login">
               <a className={styles.navLink}>Login</a>
             </Link>
           </li>
           <li>
-            <Link href="/register">
+            <Link href="/account/register">
               <a className={styles.navLink}>Register</a>
             </Link>
           </li>

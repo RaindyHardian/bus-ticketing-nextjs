@@ -1,0 +1,74 @@
+.container {
+  padding: 50px 50px 0 50px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.formText {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+.formError {
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  color: rgb(243, 40, 40);
+}
+
+.registerButton {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #412ff8;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px;
+}
+
+.registerButton:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.registerButtonLoading {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #7a6ef8;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px;
+  cursor: not-allowed;
+}
+
+.information {
+  text-align: center;
+}
+
+.link {
+  color: #412ff8;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
