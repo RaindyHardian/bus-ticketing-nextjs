@@ -1,11 +1,13 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSession, signOut } from "next-auth/client";
 
 import styles from "./header.module.css";
 
 function Header() {
   const router = useRouter();
+  const [session, loading] = useSession();
   const fromRef = useRef();
   const toRef = useRef();
   const dateRef = useRef();
@@ -26,18 +28,29 @@ function Header() {
     <div className={styles.header}>
       <div className={styles.navbar}>
         <div className={styles.logo}>BookYourSeat</div>
-        <ul className={styles.navList}>
-          <li>
-            <Link href="/account/login">
-              <a className={styles.navLink}>Login</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/account/register">
-              <a className={styles.navLink}>Register</a>
-            </Link>
-          </li>
-        </ul>
+        {!session && !loading && (
+          <ul className={styles.navList}>
+            <li>
+              <Link href="/account/login">
+                <a className={styles.navLink}>Login</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/account/register">
+                <a className={styles.navLink}>Register</a>
+              </Link>
+            </li>
+          </ul>
+        )}
+        {session && !loading && (
+          <ul className={styles.navList}>
+            <li>
+              <a className={styles.navLink} onClick={() => signOut()}>
+                Logout
+              </a>
+            </li>
+          </ul>
+        )}
       </div>
 
       <div className={styles.searchTrip}>

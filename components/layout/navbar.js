@@ -1,7 +1,11 @@
 import Link from "next/link";
 import styles from "./navbar.module.css";
 
+import { useSession, signOut } from "next-auth/client";
+
 export default function Navbar() {
+  const [session, loading] = useSession();
+
   return (
     <div className={styles.navbar}>
       <div>
@@ -9,18 +13,29 @@ export default function Navbar() {
           <a className={styles.logo}>BookYourSeat</a>
         </Link>
       </div>
-      <ul className={styles.navList}>
-        <li>
-          <Link href="/account/login">
-            <a className={styles.navLink}>Login</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/account/register">
-            <a className={styles.navLink}>Register</a>
-          </Link>
-        </li>
-      </ul>
+      {!session && !loading && (
+        <ul className={styles.navList}>
+          <li>
+            <Link href="/account/login">
+              <a className={styles.navLink}>Login</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/account/register">
+              <a className={styles.navLink}>Register</a>
+            </Link>
+          </li>
+        </ul>
+      )}
+      {session && !loading && (
+        <ul className={styles.navList}>
+          <li>
+            <a className={styles.navLink} onClick={() => signOut()}>
+              Logout
+            </a>
+          </li>
+        </ul>
+      )}
     </div>
   );
 }

@@ -36,6 +36,7 @@
 
 .navLink:hover {
   color: #b9b3f8;
+  cursor: pointer;
 }
 
 /* HOME SEARCH TRIP */

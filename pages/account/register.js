@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { getSession } from "next-auth/client";
 
 import { toast } from "react-toastify";
 
@@ -62,7 +63,7 @@ export default function Register() {
 
     if (!isError) {
       setLoading(true);
-      const response = await fetch("/api/account/register", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         body: JSON.stringify({
           name,
@@ -111,7 +112,7 @@ export default function Register() {
               <div className={styles.formError}>Full Name is required</div>
             )}
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <input
               className={styles.formText}
               type="email"
@@ -178,4 +179,21 @@ export default function Register() {
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 }
