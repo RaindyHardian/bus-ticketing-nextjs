@@ -1,18 +1,36 @@
 import { useState } from "react";
-import { DateTime } from "luxon";
-import Image from "next/image";
+import Modal from "react-modal";
+import { toast } from "react-toastify";
 
 import SeatPickerItem from "../../components/bus-ticket-detail/SeatPickerItem";
 import Layout from "../../components/layout/layout";
 import styles from "../../styles/busTicketDetail.module.css";
+import InputNameItem from "../../components/bus-ticket-detail/InputNameItem";
+import Header from "../../components/bus-ticket-detail/Header";
+import SeatSelected from "../../components/bus-ticket-detail/SeatSelected";
+
+const customStyles = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  content: {
+    padding: 0,
+  },
+};
 
 export default function BusTicketDetailPage(props) {
   const [selected, setSelected] = useState([]);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
-  const formatter = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: "IDR",
-  });
+  let item = props.trip.row * props.trip.col;
+  let grid = {
+    gridTemplateColumns: `repeat(${props.trip.col}, 50px)`,
+  };
 
   const handleClick = (seatId, seatCode) => {
     // check if the seat is already selected
@@ -21,66 +39,59 @@ export default function BusTicketDetailPage(props) {
         // delete array element that have the matched seat ID
         return [...prev.filter((element) => element.seat_id !== seatId)];
       });
-    } else {
-      setSelected((prev) => {
-        return [
-          ...prev,
-          {
-            person_name: "",
-            seat_id: seatId,
-            seat_code: seatCode,
-          },
-        ];
-      });
+      return;
     }
+
+    if (selected.length === 3) {
+      toast.warning("You can only choose 3 seat");
+      return;
+    }
+
+    setSelected((prev) => {
+      return [
+        ...prev,
+        {
+          person_name: "",
+          seat_id: seatId,
+          seat_code: seatCode,
+        },
+      ];
+    });
   };
 
-  let item = props.trip.row * props.trip.col;
-  let grid = {
-    gridTemplateColumns: `repeat(${props.trip.col}, 50px)`,
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+    const name = "";
+    let items = [...selected];
+    for (let i = 0; i < selected.length; i++) {
+      let item = { ...selected[i], person_name: name };
+      items[i] = item;
+    }
+    setSelected(items);
+  }
+
+  // function to set the name of the person whose occupy the seat
+  const handlePName = (name, index) => {
+    // 1. Make a shallow copy of the items
+    let items = [...selected];
+    // 2. Make a shallow copy of the item you want to mutate and Replace the property you're intested in
+    let item = { ...selected[index], person_name: name };
+    // 3. Replace the property you're intested in
+    // item.name = e.target.value;
+    // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
+    items[index] = item;
+    // // 5. Set the state to our new copy
+    setSelected(items);
   };
 
   return (
     <Layout>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <p className={styles.headerTitle}>Choose your seat</p>
-          <div className={styles.cardInfo}>
-            <div>
-              <p className={styles.time}>
-                {DateTime.fromSQL(props.trip.trip_time).toLocaleString(
-                  DateTime.TIME_24_SIMPLE
-                )}
-              </p>
-              <p className={styles.location}>{props.trip.start}</p>
-            </div>
-            <div className={styles.cardNext}>
-              <Image src="/images/east.svg" alt="to" width={24} height={24} />
-            </div>
-            <div>
-              <p className={styles.time}>
-                {DateTime.fromSQL(props.trip.drop_time).toLocaleString(
-                  DateTime.TIME_24_SIMPLE
-                )}
-              </p>
-              <p className={styles.location}>{props.trip.destination}</p>
-            </div>
-            <div>
-              <p className={styles.time}>
-                {DateTime.fromSQL(props.trip.trip_date).toLocaleString(
-                  DateTime.DATE_FULL
-                )}
-              </p>
-              <p className={styles.price}>
-                {formatter.format(props.trip.fare)}
-              </p>
-            </div>
-            <div>
-              <p className={styles.seat}>{props.trip.type}</p>
-              <p className={styles.seat}>{props.trip.total_seat} Seat Bus</p>
-            </div>
-          </div>
-        </div>
+        <Header trip={props.trip} />
 
         <div className={styles.content}>
           <div>
@@ -102,23 +113,37 @@ export default function BusTicketDetailPage(props) {
             </div>
           </div>
           <div className={styles.selected}>
-            <div className={styles.selected_title}>Seat Selected</div>
-            <ul className={styles.selected_list}>
-              {selected.map((item) => (
-                <li key={item.seat_code} className={styles.selected_list_item}>
-                  {item.seat_code}
-                </li>
-              ))}
-            </ul>
-            <button
-              className={styles.orderButton}
-              disabled={selected.length === 0}
-            >
-              Order
-            </button>
+            <SeatSelected selected={selected} openModal={openModal} />
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Finalize your order, specify the passenger name"
+      >
+        <div className={styles.modalHeader}>
+          <h1>Finalize your order</h1>
+          <button onClick={closeModal} className={styles.modalClose}>
+            Close
+          </button>
+        </div>
+        <div className={styles.modalContent}>
+          <form>
+            {selected.map((item, index) => (
+              <InputNameItem
+                key={item.seat_code}
+                index={index}
+                name={item.person_name}
+                seat_code={item.seat_code}
+                handlePName={handlePName}
+              />
+            ))}
+            <button className={styles.modalSubmit}>Order</button>
+          </form>
+        </div>
+      </Modal>
     </Layout>
   );
 }

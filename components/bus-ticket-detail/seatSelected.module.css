@@ -1,0 +1,39 @@
+.selected_title {
+  border: 1px solid black;
+  margin-bottom: 5px;
+  padding: 2px 10px;
+  font-weight: 700;
+}
+
+.selected_list {
+  list-style-type: none;
+}
+
+.selected_list_item {
+  border: 1px solid black;
+  margin-bottom: 5px;
+  padding: 2px;
+}
+
+.orderButton {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #412ff8;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 7px 35px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.orderButton:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.orderButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

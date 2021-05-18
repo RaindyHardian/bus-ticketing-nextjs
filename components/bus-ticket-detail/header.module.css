@@ -1,0 +1,42 @@
+/*  HEADER */
+.header {
+  padding: 40px 50px;
+  border-bottom: 1px solid lightgray;
+}
+
+.headerTitle {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.cardNext {
+  margin-top: 10px;
+}
+
+.time {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.location {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.seat {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #412ff8;
+}
