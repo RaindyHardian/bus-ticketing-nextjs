@@ -8,27 +8,22 @@ export default function Header(props) {
     currency: "IDR",
   });
 
+  const trip_time = props.trip.trip_time.slice(0, -3);
+  const drop_time = props.trip.drop_time.slice(0, -3);
+
   return (
     <div className={styles.header}>
       <p className={styles.headerTitle}>Choose your seat</p>
       <div className={styles.cardInfo}>
         <div>
-          <p className={styles.time}>
-            {DateTime.fromSQL(props.trip.trip_time).toLocaleString(
-              DateTime.TIME_24_SIMPLE
-            )}
-          </p>
+          <p className={styles.time}>{trip_time}</p>
           <p className={styles.location}>{props.trip.start}</p>
         </div>
         <div className={styles.cardNext}>
           <Image src="/images/east.svg" alt="to" width={24} height={24} />
         </div>
         <div>
-          <p className={styles.time}>
-            {DateTime.fromSQL(props.trip.drop_time).toLocaleString(
-              DateTime.TIME_24_SIMPLE
-            )}
-          </p>
+          <p className={styles.time}>{drop_time}</p>
           <p className={styles.location}>{props.trip.destination}</p>
         </div>
         <div>

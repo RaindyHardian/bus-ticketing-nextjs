@@ -7,6 +7,9 @@ export default NextAuth({
   session: {
     jwt: true,
   },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+  },
   providers: [
     Providers.Credentials({
       async authorize(credentials) {
@@ -39,8 +42,40 @@ export default NextAuth({
         const role = user[0].user_role_id;
         const user_id = user[0].user_id;
 
-        return { name, email, role, user_id };
+        const userJwt = {
+          name: name,
+          email: email,
+          role: role,
+          user_id: user_id,
+        };
+        console.log(userJwt);
+        return userJwt;
       },
     }),
   ],
+  callbacks: {
+    /**
+     * @param  {object}  token     Decrypted JSON Web Token
+     * @param  {object}  user      User object      (only available on sign in)
+     * @param  {object}  account   Provider account (only available on sign in)
+     * @param  {object}  profile   Provider profile (only available on sign in)
+     * @param  {boolean} isNewUser True if new user (only available on sign in)
+     * @return {object}            JSON Web Token that will be saved
+     */
+    async jwt(token, user, account, profile, isNewUser) {
+      // Add access_token to the token right after signin
+      // if (account?.accessToken) {
+      //   token.accessToken = account.accessToken;
+      // }
+      // return token;
+      user && (token.user = user);
+      return Promise.resolve(token);
+    },
+    async session(session, user, sessionToken) {
+      //  "session" is current session object
+      //  below we set "user" param of "session" to value received from "jwt" callback
+      session.user = user.user;
+      return Promise.resolve(session);
+    },
+  },
 });

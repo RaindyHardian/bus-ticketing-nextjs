@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
+import { useSession } from "next-auth/client";
 
 import SeatPickerItem from "../../components/bus-ticket-detail/SeatPickerItem";
 import Layout from "../../components/layout/layout";
@@ -23,9 +24,13 @@ const customStyles = {
   },
 };
 
+Modal.setAppElement("#__next");
+
 export default function BusTicketDetailPage(props) {
+  const [session, loading] = useSession();
   const [selected, setSelected] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   let item = props.trip.row * props.trip.col;
   let grid = {
@@ -51,9 +56,10 @@ export default function BusTicketDetailPage(props) {
       return [
         ...prev,
         {
-          person_name: "",
+          name: "",
           seat_id: seatId,
           seat_code: seatCode,
+          trip_id: props.trip.trip_id,
         },
       ];
     });
@@ -68,7 +74,7 @@ export default function BusTicketDetailPage(props) {
     const name = "";
     let items = [...selected];
     for (let i = 0; i < selected.length; i++) {
-      let item = { ...selected[i], person_name: name };
+      let item = { ...selected[i], name: name };
       items[i] = item;
     }
     setSelected(items);
@@ -79,7 +85,7 @@ export default function BusTicketDetailPage(props) {
     // 1. Make a shallow copy of the items
     let items = [...selected];
     // 2. Make a shallow copy of the item you want to mutate and Replace the property you're intested in
-    let item = { ...selected[index], person_name: name };
+    let item = { ...selected[index], name: name };
     // 3. Replace the property you're intested in
     // item.name = e.target.value;
     // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
@@ -87,6 +93,30 @@ export default function BusTicketDetailPage(props) {
     // // 5. Set the state to our new copy
     setSelected(items);
   };
+
+  async function buyTicketHandler(e) {
+    e.preventDefault();
+    setSubmitLoading(true);
+    const response = await fetch("/api/ticket", {
+      method: "POST",
+      body: JSON.stringify(selected),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      toast.error(data.message);
+      setSubmitLoading(false);
+      return;
+    }
+
+    toast.success(data.message);
+    setSubmitLoading(false);
+    // router.push("/");
+  }
 
   return (
     <Layout>
@@ -135,12 +165,14 @@ export default function BusTicketDetailPage(props) {
               <InputNameItem
                 key={item.seat_code}
                 index={index}
-                name={item.person_name}
+                name={item.name}
                 seat_code={item.seat_code}
                 handlePName={handlePName}
               />
             ))}
-            <button className={styles.modalSubmit}>Order</button>
+            <button className={styles.modalSubmit} onClick={buyTicketHandler}>
+              Order
+            </button>
           </form>
         </div>
       </Modal>
