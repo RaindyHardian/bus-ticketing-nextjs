@@ -176,22 +176,14 @@ function AllBusTicketPage(props) {
         <p className={styles.busType}>{item.type}</p>
         <div className={styles.cardInfo}>
           <div>
-            <p className={styles.time}>
-              {DateTime.fromSQL(item.trip_time).toLocaleString(
-                DateTime.TIME_24_SIMPLE
-              )}
-            </p>
+            <p className={styles.time}>{item.trip_time.slice(0, -3)}</p>
             <p className={styles.location}>{item.start}</p>
           </div>
           <div className={styles.cardNext}>
             <Image src="/images/east.svg" alt="to" width={24} height={24} />
           </div>
           <div>
-            <p className={styles.time}>
-              {DateTime.fromSQL(item.drop_time).toLocaleString(
-                DateTime.TIME_24_SIMPLE
-              )}
-            </p>
+            <p className={styles.time}>{item.drop_time.slice(0, -3)}</p>
             <p className={styles.location}>{item.destination}</p>
           </div>
           <div>
@@ -279,6 +271,7 @@ function AllBusTicketPage(props) {
               value="1"
               checked={pickupOption === "1"}
               onClick={pickupHandler}
+              onChange={() => {}}
             />
             <label htmlFor="pick1" className="pl-2">
               00.00 - 06.00
@@ -292,6 +285,7 @@ function AllBusTicketPage(props) {
               value="2"
               checked={pickupOption === "2"}
               onClick={pickupHandler}
+              onChange={() => {}}
             />
             <label htmlFor="pick2" className="pl-2">
               06.00 - 12.00
@@ -305,6 +299,7 @@ function AllBusTicketPage(props) {
               value="3"
               checked={pickupOption === "3"}
               onClick={pickupHandler}
+              onChange={() => {}}
             />
             <label htmlFor="pick3" className="pl-2">
               12.00 - 18.00
@@ -318,6 +313,7 @@ function AllBusTicketPage(props) {
               value="4"
               checked={pickupOption === "4"}
               onClick={pickupHandler}
+              onChange={() => {}}
             />
             <label htmlFor="pick4" className="pl-2">
               18.00 - 24.00
@@ -333,6 +329,7 @@ function AllBusTicketPage(props) {
               value="1"
               checked={dropOption === "1"}
               onClick={dropHandler}
+              onChange={() => {}}
             />
             <label htmlFor="drop1" className="pl-2">
               00.00 - 06.00
@@ -346,6 +343,7 @@ function AllBusTicketPage(props) {
               value="2"
               checked={dropOption === "2"}
               onClick={dropHandler}
+              onChange={() => {}}
             />
             <label htmlFor="drop2" className="pl-2">
               06.00 - 12.00
@@ -359,6 +357,7 @@ function AllBusTicketPage(props) {
               value="3"
               checked={dropOption === "3"}
               onClick={dropHandler}
+              onChange={() => {}}
             />
             <label htmlFor="drop3" className="pl-2">
               12.00 - 18.00
@@ -372,6 +371,7 @@ function AllBusTicketPage(props) {
               value="4"
               checked={dropOption === "4"}
               onClick={dropHandler}
+              onChange={() => {}}
             />
             <label htmlFor="drop4" className="pl-2">
               18.00 - 24.00

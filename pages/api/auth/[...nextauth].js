@@ -48,7 +48,7 @@ export default NextAuth({
           role: role,
           user_id: user_id,
         };
-        console.log(userJwt);
+        
         return userJwt;
       },
     }),

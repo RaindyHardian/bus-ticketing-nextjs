@@ -14,11 +14,6 @@ function Header() {
 
   function submitHandler(e) {
     e.preventDefault();
-    console.log(
-      fromRef.current.value,
-      toRef.current.value,
-      dateRef.current.value
-    );
     router.push(
       `/bus-ticket?from=${fromRef.current.value}&to=${toRef.current.value}&trip_date=${dateRef.current.value}`
     );
@@ -44,6 +39,11 @@ function Header() {
         )}
         {session && !loading && (
           <ul className={styles.navList}>
+            <li>
+              <Link href="/dashboard/my-ticket">
+                <a className={styles.navLink}>My Ticket</a>
+              </Link>
+            </li>
             <li>
               <a className={styles.navLink} onClick={() => signOut()}>
                 Logout

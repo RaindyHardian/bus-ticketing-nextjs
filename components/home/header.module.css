@@ -2,7 +2,7 @@
 .header {
   min-width: fit-content;
   background: linear-gradient(180deg, #071332 50%, #132e74 100%);
-  padding: 0 100px 30px 100px;
+  padding: 0 50px 30px 50px;
 }
 
 .navbar {
@@ -45,6 +45,8 @@
   background-color: white;
   padding: 20px 20px;
   margin-top: 15px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .searchTitle {

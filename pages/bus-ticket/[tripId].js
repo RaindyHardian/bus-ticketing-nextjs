@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 import { useSession } from "next-auth/client";
 
 import SeatPickerItem from "../../components/bus-ticket-detail/SeatPickerItem";
@@ -28,6 +29,7 @@ Modal.setAppElement("#__next");
 
 export default function BusTicketDetailPage(props) {
   const [session, loading] = useSession();
+  const router = useRouter();
   const [selected, setSelected] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -86,11 +88,9 @@ export default function BusTicketDetailPage(props) {
     let items = [...selected];
     // 2. Make a shallow copy of the item you want to mutate and Replace the property you're intested in
     let item = { ...selected[index], name: name };
-    // 3. Replace the property you're intested in
-    // item.name = e.target.value;
-    // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
+    // 3. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
     items[index] = item;
-    // // 5. Set the state to our new copy
+    // 4. Set the state to our new copy
     setSelected(items);
   };
 
@@ -115,7 +115,7 @@ export default function BusTicketDetailPage(props) {
 
     toast.success(data.message);
     setSubmitLoading(false);
-    // router.push("/");
+    router.push("/dashboard/my-ticket");
   }
 
   return (

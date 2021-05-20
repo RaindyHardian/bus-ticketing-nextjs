@@ -30,6 +30,11 @@ export default function Navbar() {
       {session && !loading && (
         <ul className={styles.navList}>
           <li>
+            <Link href="/dashboard/my-ticket">
+              <a className={styles.navLink}>My Ticket</a>
+            </Link>
+          </li>
+          <li>
             <a className={styles.navLink} onClick={() => signOut()}>
               Logout
             </a>

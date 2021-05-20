@@ -1,0 +1,62 @@
+.card {
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 20px 50px;
+  margin-bottom: 20px;
+  background-color: white;
+  border: 1px solid rgb(200, 200, 200);
+}
+
+.busType {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.cardNext{
+  margin-top: 10px;
+}
+
+.time {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.location {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.seat {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #412ff8;
+}
+
+.chooseButton {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #412ff8;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 7px 35px;
+  margin-top: 10px;
+}
+
+.chooseButton:hover{
+  cursor: pointer;
+  opacity: 0.9;
+}
