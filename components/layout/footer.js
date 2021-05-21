@@ -35,7 +35,7 @@ export default function Footer() {
       <div>
         <h4 className={styles.title}>Support</h4>
         <ul className={styles.footerList}>
-        <li>
+          <li>
             <Link href="#">
               <a className={styles.footerLink}>Help Center</a>
             </Link>

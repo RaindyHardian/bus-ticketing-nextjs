@@ -58,7 +58,7 @@ export default function Home() {
         </p>
         <div className={styles.whatSpecialContainer}>
           {/* Special Section 1 */}
-          <div>
+          <div className={styles.imgLeft}>
             <Image
               src="/images/confirmed_svg.svg"
               alt="serch"
@@ -96,7 +96,7 @@ export default function Home() {
             />
           </div>
           {/* Special Section 3 */}
-          <div>
+          <div className={styles.imgLeft}>
             <Image
               src="/images/cc_svg.svg"
               alt="serch"

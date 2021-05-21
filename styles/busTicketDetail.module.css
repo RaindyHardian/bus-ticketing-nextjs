@@ -78,3 +78,35 @@
   opacity: 0.9;
   cursor: pointer;
 }
+
+@media screen and (max-width: 420px) {
+  .container {
+    margin: 20px;
+  }
+
+  .content {
+    flex-direction: column;
+    padding: 20px 5px;
+  }
+
+  .grid_container {
+    border: 0;
+  }
+
+  .selected {
+    padding: 0 30px;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .modalHeader {
+    padding: 30px 20px;
+  }
+
+  .modalHeader > h1 {
+    font-size: 24px;
+  }
+  .modalContent {
+    padding: 30px 20px;
+  }
+}

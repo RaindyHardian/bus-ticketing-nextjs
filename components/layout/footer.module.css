@@ -34,3 +34,22 @@
 .address {
   word-spacing: 5px;
 }
+
+@media screen and (max-width: 420px) {
+  .footer {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    column-gap: 10px;
+    margin-top: 50px;
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .footer > div {
+    margin-bottom: 15px;
+  }
+}

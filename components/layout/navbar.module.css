@@ -33,3 +33,18 @@
   color: #412ff8;
   cursor: pointer;
 }
+
+@media screen and (max-width: 420px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .navLink {
+    font-size: 15px;
+    margin-left: 10px;
+  }
+}

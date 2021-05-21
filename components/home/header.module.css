@@ -107,3 +107,73 @@
   opacity: 0.9;
   cursor: pointer;
 }
+
+@media screen and (max-width: 420px) {
+  .header {
+    min-width: unset;
+    padding: 0 20px 30px 20px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .navLink {
+    font-size: 15px;
+    margin-left: 10px;
+  }
+
+  /* HOME SEARCH TRIP */
+  .searchTrip {
+    padding: 20px 15px;
+    margin-top: 15px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .searchTitle {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .formInputGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 95%;
+  }
+
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #838383;
+    border-radius: 5px;
+    padding: 10px 20px 25px 20px;
+    margin-right: 0 !important;
+    margin-bottom: 5px;
+  }
+
+  .label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .formText {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .formText[type="text"]:focus {
+    outline: none;
+  }
+
+  .submit {
+    font-size: 16px;
+    color: white;
+    background-color: #412ff8;
+    border: 0;
+    padding: 10px 25px;
+    border-radius: 5px;
+  }
+}

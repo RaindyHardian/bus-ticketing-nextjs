@@ -40,3 +40,38 @@
   font-weight: 600;
   color: #412ff8;
 }
+
+@media screen and (max-width: 420px) {
+  .header {
+    padding: 20px;
+  }
+
+  .cardInfo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+
+  .cardInfo p {
+    font-size: 16px;
+  }
+
+  .cardGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  .cardGroup_2 {
+    margin-bottom: 5px;
+  }
+
+  .cardInline {
+    display: inline-block;
+  }
+
+  .cardNext {
+    display: inline-block;
+  }
+}

@@ -22,6 +22,7 @@ const customStyles = {
   },
   content: {
     padding: 0,
+    inset: "25px",
   },
 };
 
