@@ -1,0 +1,82 @@
+.buttonContainer {
+  padding: 20px 0;
+}
+
+.openButton {
+  display: none;
+}
+
+.openSide {
+  background-color: white;
+  width: 15rem;
+  border-right: 1px solid lightgray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+.closeSide {
+  background-color: white;
+  width: 15rem;
+  border-right: 1px solid lightgray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+@media screen and (max-width: 420px) {
+  .buttonContainer {
+    position: fixed;
+    padding: 10px 20px;
+    z-index: 10;
+  }
+
+  .openButton {
+    display: unset;
+    width: 20px;
+    height: 20px;
+  }
+
+  .openOverlay {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: block;
+    background-color: black;
+    opacity: 0.5;
+  }
+
+  .closeOverlay {
+    display: none;
+  }
+
+  .openSide {
+    z-index: -5;
+    height: 100%;
+    width: 16rem;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .closeSide {
+    z-index: -5;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+}
