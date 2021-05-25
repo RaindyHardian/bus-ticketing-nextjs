@@ -21,7 +21,7 @@ export default function BusListTable({ columns, data }) {
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: 3 },
+      initialState: { pageIndex: 0, pageSize: 10 },
     },
     useSortBy,
     usePagination

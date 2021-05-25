@@ -2,7 +2,7 @@ import db from "../../../db/config";
 import seatModel from "../../../db/SeatModel";
 
 async function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === "PUT") {
     const type = req.body.type;
     const nopol = req.body.nopol;
     const total_seat = req.body.total_seat;
@@ -12,6 +12,11 @@ async function handler(req, res) {
     const item = req.body.item;
 
     try {
+      await db.query(
+        `UPDATE bus SET active=0 WHERE bus_id=${req.body.bus_id}`,
+        { type: db.QueryTypes.UPDATE }
+      );
+
       let bus_id = await db.query(
         "INSERT INTO bus(type, nopol, total_seat, row, col) VALUES (:type,:nopol,:total_seat, :row, :col);",
         {
@@ -36,44 +41,53 @@ async function handler(req, res) {
         code++;
         i++;
       }
+      var filtered = disEl.filter((e) => e <= row * col);
       for (i = 0; i < seat.length; i++) {
-        for (j = 0; j < disEl.length; j++) {
-          if (seat[i].nr == disEl[j]) {
+        for (j = 0; j < filtered.length; j++) {
+          if (seat[i].nr == filtered[j]) {
             seat[i].disable = 1;
           }
         }
       }
 
-      await seatModel.bulkCreate(seat);
+      let resultSeat = await seatModel.bulkCreate(seat);
 
       return res
         .status(200)
-        .json({ success: 1, bus: bus_id, message: "Create new bus succeeded" });
+        .json({ success: 1, bus: bus_id, message: "Bus updated successfully" });
     } catch (err) {
       console.log(err);
       return res
         .status(500)
-        .json({ success: 0, message: "Error, can't create new bus" });
+        .json({ success: 0, message: "Error, can't update bus" });
     }
   }
 
+  const bus_id = req.query.busId;
   try {
-    let data = await db.query(
-      `SELECT * FROM bus WHERE active=1 ORDER BY bus_id DESC;`,
+    let busData = await db.query("SELECT * FROM bus WHERE bus_id = :bus_id ;", {
+      replacements: {
+        bus_id: bus_id,
+      },
+      type: db.QueryTypes.SELECT,
+    });
+    let seatData = await db.query(
+      "SELECT * FROM seat WHERE bus_id = :bus_id ;",
       {
+        replacements: {
+          bus_id: bus_id,
+        },
         type: db.QueryTypes.SELECT,
       }
     );
-
-    return  res.status(200).json({
-      success: 1,
-      busdata: data,
-      dataLength: data.length,
-      // perPage: perPage,
-    });
+    return res
+      .status(200)
+      .json({ success: 1, busdata: busData[0], seatdata: seatData });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ success: 0, message: "Failed getting data" });
+    return res
+      .status(500)
+      .json({ success: 0, message: "Error, can't get bus" });
   }
 }
 

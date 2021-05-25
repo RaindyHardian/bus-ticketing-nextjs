@@ -1,10 +1,43 @@
 import { useMemo } from "react";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 import { getSession } from "next-auth/client";
 import Layout from "../../../../components/layout/layout";
 import BusListTable from "../../../../components/admin/bus/list/BusListTable";
 
 export default function AdminListBus(props) {
-  const { ticket } = props;
+  const router = useRouter();
+  const { bus } = props;
+
+  async function deleteBus(e, id) {
+    e.preventDefault();
+    if (id === null) {
+      toast.error("Error, can't delete bus");
+      return;
+    }
+    const submitData = {
+      bus_id: id,
+    };
+
+    const response = await fetch("/api/bus/delete", {
+      method: "POST",
+      body: JSON.stringify(submitData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      toast.error(data.message);
+      return;
+    }
+
+    toast.success(data.message);
+    router.push("/dashboard/admin/bus");
+  }
+
   const columns = useMemo(
     () => [
       {
@@ -29,18 +62,24 @@ export default function AdminListBus(props) {
 
   const data = useMemo(
     () =>
-      ticket.map((item) => {
+      bus.map((item) => {
         return {
           ...item,
           action: (
             <>
-              <button>Update</button>
-              <button>Delete</button>
+              <button
+                onClick={() =>
+                  router.push(`/dashboard/admin/bus/${item.bus_id}`)
+                }
+              >
+                Update
+              </button>
+              <button onClick={(e) => deleteBus(e, item.bus_id)}>Delete</button>
             </>
           ),
         };
       }),
-    []
+    [deleteBus]
   );
 
   return (
@@ -84,9 +123,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      ticket: data.ticketdata,
-      // dataLength: data.dataLength,
-      // perPage: data.perPage,
+      bus: data.busdata,
     },
   };
 }

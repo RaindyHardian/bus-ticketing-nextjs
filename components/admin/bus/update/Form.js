@@ -1,31 +1,31 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import SeatBuilderItem from "./SeatBuilderItem";
 import styles from "./form.module.css";
+import SeatBuilderItem from "../create/SeatBuilderItem";
 
-export default function FormCreateBus() {
+export default function FormUpdateBus(props) {
   const router = useRouter();
-  const [row, setRow] = useState(5);
-  const [col, setCol] = useState(5);
-  const [type, setType] = useState("");
-  const [nopol, setNopol] = useState("");
-  const [disabledSeat, setDisabledSeat] = useState([]);
+  const [row, setRow] = useState(props.bus.row);
+  const [col, setCol] = useState(props.bus.col);
+  const [type, setType] = useState(props.bus.type);
+  const [nopol, setNopol] = useState(props.bus.nopol);
+  const [disabledSeat, setDisabledSeat] = useState(props.bus.disEl);
   const item = row * col;
 
   const grid = {
     gridTemplateColumns: `repeat(${col}, 50px)`,
   };
 
-  const changeCol = (e) => {
+  function changeCol(e) {
     setCol(e.target.value);
     setDisabledSeat([]);
-  };
+  }
 
-  const changeRow = (e) => {
+  function changeRow(e) {
     setRow(e.target.value);
     setDisabledSeat([]);
-  };
+  }
 
   async function submit(e) {
     e.preventDefault();
@@ -41,10 +41,11 @@ export default function FormCreateBus() {
       row: row,
       col: col,
       item: item,
+      bus_id: props.bus.bus_id,
     };
 
-    const response = await fetch("/api/bus", {
-      method: "POST",
+    const response = await fetch(`/api/bus/${props.bus.bus_id}`, {
+      method: "PUT",
       body: JSON.stringify(submitData),
       headers: {
         "Content-Type": "application/json",
