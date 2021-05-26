@@ -67,7 +67,7 @@ async function handler(req, res) {
     );
 
     let ticketdata = await db.query(
-      "SELECT ticket.*, seat.*, user.name as user_name FROM ticket JOIN seat ON (seat.seat_id=ticket.seat_id) JOIN user ON (ticket.user_id = user.user_id) WHERE ticket.trip_id=:trip_id;",
+      "SELECT ticket.*, seat.*, user.name as user_name FROM ticket JOIN seat ON (seat.seat_id=ticket.seat_id) JOIN user ON (ticket.user_id = user.user_id) WHERE ticket.trip_id=:trip_id AND ticket.active=1;",
       {
         replacements: {
           trip_id: trip_id,

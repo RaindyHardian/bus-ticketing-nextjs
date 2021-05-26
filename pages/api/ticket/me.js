@@ -18,7 +18,7 @@ async function handler(req, res) {
       : "trip_date";
 
     const ticketdata = await db.query(
-      `SELECT * FROM ticket JOIN trip ON (trip.trip_id=ticket.trip_id) JOIN seat ON (seat.seat_id=ticket.seat_id) JOIN bus ON (bus.bus_id=seat.bus_id) WHERE trip.start LIKE :start AND trip.destination LIKE :destination AND trip.trip_date=${trip_dateFilter} AND ticket.user_id=:user_id ORDER BY ticket.ticket_id DESC;`,
+      `SELECT * FROM ticket JOIN trip ON (trip.trip_id=ticket.trip_id) JOIN seat ON (seat.seat_id=ticket.seat_id) JOIN bus ON (bus.bus_id=seat.bus_id) WHERE trip.start LIKE :start AND trip.destination LIKE :destination AND trip.trip_date=${trip_dateFilter} AND ticket.user_id=:user_id AND ticket.active=1 ORDER BY ticket.ticket_id DESC;`,
       {
         replacements: {
           user_id: session.user.user_id,

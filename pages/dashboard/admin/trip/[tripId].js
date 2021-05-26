@@ -3,6 +3,7 @@ import Layout from "../../../../components/layout/layout";
 import { getSession } from "next-auth/client";
 import FormUpdateTrip from "../../../../components/admin/trip/update/Form";
 import ListTable from "../../../../components/admin/bus/list/ListTable";
+import { toast } from "react-toastify";
 
 export default function TripDetail(props) {
   const { bus, trip, ticket, seat } = props;
@@ -68,18 +69,9 @@ export default function TripDetail(props) {
         return {
           ...item,
           action: (
-            <>
-              <button
-                onClick={() =>
-                  router.push(`/dashboard/admin/ticket/${item.ticket_id}`)
-                }
-              >
-                Detail
-              </button>
-              <button onClick={(e) => deleteTicket(e, item.ticket_id)}>
-                Delete
-              </button>
-            </>
+            <button onClick={(e) => deleteTicket(e, item.ticket_id)}>
+              Delete
+            </button>
           ),
         };
       }),
