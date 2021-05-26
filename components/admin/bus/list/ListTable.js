@@ -1,7 +1,7 @@
 import { useTable, useSortBy, usePagination } from "react-table";
-import styles from "./busListTable.module.css";
+import styles from "./listTable.module.css";
 
-export default function BusListTable({ columns, data }) {
+export default function ListTable({ columns, data }) {
   const {
     getTableProps,
     getTableBodyProps,

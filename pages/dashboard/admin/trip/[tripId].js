@@ -1,26 +1,24 @@
 import { useMemo } from "react";
-import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import { getSession } from "next-auth/client";
 import Layout from "../../../../components/layout/layout";
+import { getSession } from "next-auth/client";
+import FormUpdateTrip from "../../../../components/admin/trip/update/Form";
 import ListTable from "../../../../components/admin/bus/list/ListTable";
 
-export default function AdminListBus(props) {
-  const router = useRouter();
-  const { bus } = props;
+export default function TripDetail(props) {
+  const { bus, trip, ticket, seat } = props;
 
-  async function deleteBus(e, id) {
+  async function deleteTicket(e, id) {
     e.preventDefault();
     if (id === null) {
       toast.error("Error, can't delete bus");
       return;
     }
     const submitData = {
-      bus_id: id,
+      ticket_id: id,
     };
 
-    const response = await fetch("/api/bus/delete", {
-      method: "POST",
+    const response = await fetch("/api/ticket/delete", {
+      method: "DELETE",
       body: JSON.stringify(submitData),
       headers: {
         "Content-Type": "application/json",
@@ -41,16 +39,20 @@ export default function AdminListBus(props) {
   const columns = useMemo(
     () => [
       {
-        Header: "Type",
-        accessor: "type", // accessor is the "key" in the data
+        Header: "Ticket ID",
+        accessor: "ticket_id", // accessor is the "key" in the data
       },
       {
-        Header: "No. Polisi",
-        accessor: "nopol",
+        Header: "User Account",
+        accessor: "user_name",
       },
       {
-        Header: "Total Seat",
-        accessor: "total_seat",
+        Header: "Passenger",
+        accessor: "name",
+      },
+      {
+        Header: "Seat Code",
+        accessor: "seat_code",
       },
       {
         Header: "Action",
@@ -62,30 +64,34 @@ export default function AdminListBus(props) {
 
   const data = useMemo(
     () =>
-      bus.map((item) => {
+      ticket.map((item) => {
         return {
           ...item,
           action: (
             <>
               <button
                 onClick={() =>
-                  router.push(`/dashboard/admin/bus/${item.bus_id}`)
+                  router.push(`/dashboard/admin/ticket/${item.ticket_id}`)
                 }
               >
-                Update
+                Detail
               </button>
-              <button onClick={(e) => deleteBus(e, item.bus_id)}>Delete</button>
+              <button onClick={(e) => deleteTicket(e, item.ticket_id)}>
+                Delete
+              </button>
             </>
           ),
         };
       }),
-    [deleteBus]
+    [deleteTicket]
   );
 
   return (
     <Layout admin>
       <div>
-        <h1>List Bus</h1>
+        <h1>Detail Trip</h1>
+        <FormUpdateTrip bus={bus} trip={trip} />
+        <h1>Ticket</h1>
         <ListTable columns={columns} data={data} />
       </div>
     </Layout>
@@ -94,6 +100,8 @@ export default function AdminListBus(props) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
+  const tripId = context.params.tripId;
+
   if (!session) {
     return {
       redirect: {
@@ -103,7 +111,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const res = await fetch("http://localhost:3000/api/bus", {
+  const res = await fetch(`http://localhost:3000/api/trip/${tripId}`, {
     headers: {
       "Content-Type": "application/json",
       cookie: context.req.headers.cookie,
@@ -123,7 +131,10 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      bus: data.busdata,
+      trip: data.trip,
+      bus: data.bus,
+      seat: data.seat,
+      ticket: data.ticket,
     },
   };
 }
