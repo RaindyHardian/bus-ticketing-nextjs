@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import Layout from "../../../../components/layout/layout";
 import { getSession } from "next-auth/client";
-import FormUpdateTrip from "../../../../components/admin/trip/update/Form";
 import ListTable from "../../../../components/admin/bus/list/ListTable";
 import { toast } from "react-toastify";
+import InfoDetail from "../../../../components/admin/user/InfoDetail";
 
-export default function TripDetail(props) {
-  const { bus, trip, ticket, seat } = props;
+export default function UserDetail(props) {
+  const { user, ticket } = props;
 
   async function deleteTicket(e, id) {
     e.preventDefault();
@@ -34,7 +34,7 @@ export default function TripDetail(props) {
     }
 
     toast.success(data.message);
-    router.push("/dashboard/admin/trip");
+    router.push("/dashboard/admin/user");
   }
 
   const columns = useMemo(
@@ -42,10 +42,6 @@ export default function TripDetail(props) {
       {
         Header: "Ticket ID",
         accessor: "ticket_id", // accessor is the "key" in the data
-      },
-      {
-        Header: "User Account",
-        accessor: "user_name",
       },
       {
         Header: "Passenger",
@@ -81,9 +77,8 @@ export default function TripDetail(props) {
   return (
     <Layout admin>
       <div>
-        <h1>Detail Trip</h1>
-        <FormUpdateTrip bus={bus} trip={trip} />
-        <h1>Ticket</h1>
+        <h1>User Detail Information</h1>
+        <InfoDetail user={user} />
         <ListTable columns={columns} data={data} />
       </div>
     </Layout>
@@ -92,7 +87,7 @@ export default function TripDetail(props) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const tripId = context.params.tripId;
+  const userId = context.params.userId;
 
   if (!session) {
     return {
@@ -103,7 +98,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const res = await fetch(`http://localhost:3000/api/trip/${tripId}`, {
+  const res = await fetch(`http://localhost:3000/api/user/${userId}`, {
     headers: {
       "Content-Type": "application/json",
       cookie: context.req.headers.cookie,
@@ -123,9 +118,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      trip: data.trip,
-      bus: data.bus,
-      seat: data.seat,
+      user: data.user,
       ticket: data.ticket,
     },
   };

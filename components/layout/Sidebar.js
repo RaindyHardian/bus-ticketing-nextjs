@@ -29,7 +29,11 @@ export default function Sidebar() {
           activeItemId={router.pathname}
           onSelect={({ itemId }) => {
             // maybe push to the route
-            if (itemId !== "busGroup" && itemId !== "tripGroup") {
+            if (
+              itemId !== "busGroup" &&
+              itemId !== "tripGroup" &&
+              itemId !== "userGroup"
+            ) {
               router.push(itemId);
             }
           }}
@@ -67,6 +71,16 @@ export default function Sidebar() {
                 {
                   title: "Create Trip",
                   itemId: "/dashboard/admin/trip/create",
+                },
+              ],
+            },
+            {
+              title: "User",
+              itemId: "userGroup",
+              subNav: [
+                {
+                  title: "List User",
+                  itemId: "/dashboard/admin/user",
                 },
               ],
             },

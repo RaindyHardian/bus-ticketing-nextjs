@@ -12,7 +12,7 @@ export default function AdminListTrip(props) {
   async function deleteTrip(e, id) {
     e.preventDefault();
     if (id === null) {
-      toast.error("Error, can't delete bus");
+      toast.error("Error, can't delete trip");
       return;
     }
     const submitData = {
