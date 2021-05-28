@@ -1,0 +1,25 @@
+.item {
+  text-align: center;
+  border: 1px solid rgb(120, 120, 120);
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.selected {
+  text-align: center;
+  border: 1px solid rgb(120, 120, 120);
+  width: 50px;
+  height: 50px;
+  background-color: #412ff8;
+  color: white;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.disabled {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+}

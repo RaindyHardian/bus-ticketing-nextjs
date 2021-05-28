@@ -10,7 +10,7 @@ function MyTicket(props) {
       <div className={styles.container}>
         <h1 className={styles.title}>My Ticket</h1>
         {props.ticket.map((item) => (
-          <TicketItem key={item.ticket_id} item={item} />
+          <TicketItem key={item.ticket_id} ticket={item} />
         ))}
       </div>
     </Layout>

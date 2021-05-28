@@ -72,11 +72,26 @@
   }
 
   .cardInfo {
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
   }
 
   .cardInfo p {
     font-size: 14px;
+  }
+
+  .cardGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  .cardGroup_2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
