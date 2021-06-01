@@ -58,7 +58,7 @@ export default function AdminListUser(props) {
   return (
     <Layout admin>
       <div>
-        <h1>List User</h1>
+        <h1 className={styles.title}>List User</h1>
         <ListTable columns={columns} data={data} />
       </div>
     </Layout>

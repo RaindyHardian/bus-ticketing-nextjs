@@ -81,15 +81,18 @@ export default function AdminListTrip(props) {
           action: (
             <>
               <button
-              className={styles.buttonUpdate}
-              style={{marginRight: '5px'}}
+                className={styles.buttonUpdate}
+                style={{ marginRight: "5px" }}
                 onClick={() =>
                   router.push(`/dashboard/admin/trip/${item.trip_id}`)
                 }
               >
                 Detail
               </button>
-              <button className={styles.buttonDelete} onClick={(e) => deleteTrip(e, item.trip_id)}>
+              <button
+                className={styles.buttonDelete}
+                onClick={(e) => deleteTrip(e, item.trip_id)}
+              >
                 Delete
               </button>
             </>
@@ -102,7 +105,7 @@ export default function AdminListTrip(props) {
   return (
     <Layout admin>
       <div>
-        <h1>List Trip</h1>
+        <h1 className={styles.title}>List Trip</h1>
         <ListTable columns={columns} data={data} />
       </div>
     </Layout>

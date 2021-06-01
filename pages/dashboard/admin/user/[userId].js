@@ -81,7 +81,7 @@ export default function UserDetail(props) {
   return (
     <Layout admin>
       <div>
-        <h1>User Detail Information</h1>
+        <h1 className={styles.title}>User Detail Information</h1>
         <InfoDetail user={user} />
         <ListTable columns={columns} data={data} />
       </div>
