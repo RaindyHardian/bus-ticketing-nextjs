@@ -1,0 +1,37 @@
+.title {
+  margin-bottom: 15px;
+}
+
+.buttonUpdate {
+  display: inline-block;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: #412ff8;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 7px 15px;
+}
+
+.buttonUpdate:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.buttonDelete {
+  display: inline-block;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: #df2727;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 7px 15px;
+}
+
+.buttonDelete:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}

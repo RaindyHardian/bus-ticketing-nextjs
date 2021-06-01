@@ -4,6 +4,7 @@ import { getSession } from "next-auth/client";
 import ListTable from "../../../../components/admin/bus/list/ListTable";
 import { toast } from "react-toastify";
 import InfoDetail from "../../../../components/admin/user/InfoDetail";
+import styles from "../../../../styles/admin.module.css";
 
 export default function UserDetail(props) {
   const { user, ticket } = props;
@@ -65,7 +66,10 @@ export default function UserDetail(props) {
         return {
           ...item,
           action: (
-            <button onClick={(e) => deleteTicket(e, item.ticket_id)}>
+            <button
+              className={styles.buttonDelete}
+              onClick={(e) => deleteTicket(e, item.ticket_id)}
+            >
               Delete
             </button>
           ),

@@ -4,6 +4,7 @@ import { getSession } from "next-auth/client";
 import FormUpdateTrip from "../../../../components/admin/trip/update/Form";
 import ListTable from "../../../../components/admin/bus/list/ListTable";
 import { toast } from "react-toastify";
+import styles from "../../../../styles/admin.module.css";
 
 export default function TripDetail(props) {
   const { bus, trip, ticket, seat } = props;
@@ -69,7 +70,10 @@ export default function TripDetail(props) {
         return {
           ...item,
           action: (
-            <button onClick={(e) => deleteTicket(e, item.ticket_id)}>
+            <button
+              className={styles.buttonDelete}
+              onClick={(e) => deleteTicket(e, item.ticket_id)}
+            >
               Delete
             </button>
           ),

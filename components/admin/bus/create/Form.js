@@ -75,7 +75,7 @@ export default function FormCreateBus() {
   };
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <div className={styles.form}>
         <div className={styles.formGroup}>
           <label className={styles.formLabel}>Type</label>
@@ -114,6 +114,7 @@ export default function FormCreateBus() {
         <div className={styles.formGroup}>
           <label className={styles.formLabel}>Column</label>
           <input
+            className={styles.formInput}
             type="number"
             min={1}
             max={20}

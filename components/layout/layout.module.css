@@ -3,7 +3,9 @@
 }
 
 .adminContent{
-  margin-left: 16rem;
+  margin-left: 15rem;
+  width: 100%;
+  padding: 20px 40px;
 }
 
 @media screen and (max-width:420px){

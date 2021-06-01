@@ -1,5 +1,58 @@
+.formContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.form {
+  margin-right: 50px;
+}
+
+.formGroup {
+  margin-bottom: 5px;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.formInput {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+.formSubmit {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  padding: 7px 15px;
+  margin-bottom: 10px;
+  background-color: #412ff8;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+}
+
+.formSubmit:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
 .grid_container {
   display: grid;
   grid-gap: 5px;
   padding: 15px;
+}
+
+@media screen and (max-width: 420px) {
+  .formContainer {
+    flex-direction: column;
+  }
+
+  .form {
+    margin-right: 0;
+  }
 }

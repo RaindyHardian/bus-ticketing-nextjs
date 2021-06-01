@@ -1,13 +1,14 @@
 import FormUpdateBus from "../../../../components/admin/bus/update/Form";
 import Layout from "../../../../components/layout/layout";
 import { getSession } from "next-auth/client";
+import styles from "../../../../styles/admin.module.css";
 
 export default function BusDetail(props) {
   const { bus, seat } = props;
   return (
     <Layout admin>
       <div>
-        <h1>Update Bus</h1>
+        <h1  className={styles.title}>Update Bus</h1>
         <FormUpdateBus bus={bus} seat={seat} />
       </div>
     </Layout>

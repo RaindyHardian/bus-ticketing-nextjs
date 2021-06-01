@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { getSession } from "next-auth/client";
 import Layout from "../../../../components/layout/layout";
 import ListTable from "../../../../components/admin/bus/list/ListTable";
+import styles from "../../../../styles/admin.module.css";
 
 export default function AdminListBus(props) {
   const router = useRouter();
@@ -68,13 +69,20 @@ export default function AdminListBus(props) {
           action: (
             <>
               <button
+                className={styles.buttonUpdate}
+                style={{marginRight: '5px'}}
                 onClick={() =>
                   router.push(`/dashboard/admin/bus/${item.bus_id}`)
                 }
               >
                 Update
               </button>
-              <button onClick={(e) => deleteBus(e, item.bus_id)}>Delete</button>
+              <button
+                className={styles.buttonDelete}
+                onClick={(e) => deleteBus(e, item.bus_id)}
+              >
+                Delete
+              </button>
             </>
           ),
         };

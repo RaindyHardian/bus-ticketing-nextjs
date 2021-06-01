@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { getSession } from "next-auth/client";
 import Layout from "../../../../components/layout/layout";
 import ListTable from "../../../../components/admin/bus/list/ListTable";
+import styles from "../../../../styles/admin.module.css";
 
 export default function AdminListUser(props) {
   const router = useRouter();
@@ -41,6 +42,7 @@ export default function AdminListUser(props) {
           ...item,
           action: (
             <button
+              className={styles.buttonUpdate}
               onClick={() =>
                 router.push(`/dashboard/admin/user/${item.user_id}`)
               }

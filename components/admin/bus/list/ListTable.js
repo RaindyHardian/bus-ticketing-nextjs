@@ -27,7 +27,6 @@ export default function ListTable({ columns, data }) {
     usePagination
   );
 
-  // Render the UI for your table
   return (
     <>
       <div>
@@ -80,38 +79,57 @@ export default function ListTable({ columns, data }) {
         This is just a very basic UI implementation:
       */}
       </div>
-      <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+      <div className={styles.pagination}>
+        <button
+          className={styles.pageButton}
+          onClick={() => gotoPage(0)}
+          disabled={!canPreviousPage}
+        >
           {"<<"}
-        </button>{" "}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+        </button>
+        <button
+          className={styles.pageButton}
+          onClick={() => previousPage()}
+          disabled={!canPreviousPage}
+        >
           {"<"}
-        </button>{" "}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
+        </button>
+        <button
+          className={styles.pageButton}
+          onClick={() => nextPage()}
+          disabled={!canNextPage}
+        >
           {">"}
-        </button>{" "}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+        </button>
+        <button
+          className={styles.pageButton}
+          onClick={() => gotoPage(pageCount - 1)}
+          disabled={!canNextPage}
+        >
           {">>"}
-        </button>{" "}
-        <span>
+        </button>
+        <span className={styles.pagePanelGroup}>
           Page{" "}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
+          </strong>
         </span>
-        <span>
-          | Go to page:{" "}
+        {"|"}
+        <span className={styles.pagePanelGroup}>
+          Go to page:
           <input
+            className={styles.pageNumberInput}
             type="number"
+            min="1"
             defaultValue={pageIndex + 1}
             onChange={(e) => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
-            style={{ width: "100px" }}
           />
-        </span>{" "}
+        </span>
         <select
+          className={styles.pageShowSelect}
           value={pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value));

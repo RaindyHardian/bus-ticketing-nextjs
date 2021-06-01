@@ -34,7 +34,7 @@ export default function Navbar() {
               <a className={styles.navLink}>My Ticket</a>
             </Link>
           </li>
-          {session.user.role === 1 && (
+          {session.user.role === 2 && (
             <li>
               <Link href="/dashboard/admin">
                 <a className={styles.navLink}>Admin</a>

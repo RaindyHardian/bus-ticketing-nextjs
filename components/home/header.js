@@ -44,6 +44,13 @@ function Header() {
                 <a className={styles.navLink}>My Ticket</a>
               </Link>
             </li>
+            {session.user.role === 2 && (
+            <li>
+              <Link href="/dashboard/admin">
+                <a className={styles.navLink}>Admin</a>
+              </Link>
+            </li>
+          )}
             <li>
               <a className={styles.navLink} onClick={() => signOut()}>
                 Logout
