@@ -1,13 +1,14 @@
 import Layout from "../../../../components/layout/layout";
 import { getSession } from "next-auth/client";
 import FormCreateTrip from "../../../../components/admin/trip/create/Form";
+import styles from "../../../../styles/admin.module.css";
 
 export default function CreateTrip(props) {
   const { bus } = props;
   return (
     <Layout admin>
       <div>
-        <h1>Create New Trip</h1>
+        <h1 className={styles.title}>Create New Trip</h1>
         <FormCreateTrip bus={bus} />
       </div>
     </Layout>

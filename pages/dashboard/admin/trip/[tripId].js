@@ -85,9 +85,9 @@ export default function TripDetail(props) {
   return (
     <Layout admin>
       <div>
-        <h1>Detail Trip</h1>
+        <h1 className={styles.title}>Detail Trip</h1>
         <FormUpdateTrip bus={bus} trip={trip} />
-        <h1>Ticket</h1>
+        <h1 className={styles.title}>Ticket</h1>
         <ListTable columns={columns} data={data} />
       </div>
     </Layout>
