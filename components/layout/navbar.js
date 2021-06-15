@@ -1,10 +1,14 @@
+import { useState } from "react";
 import Link from "next/link";
 import styles from "./navbar.module.css";
-
 import { useSession, signOut } from "next-auth/client";
+
+import RoundedImage from "../ui/RoundedImage";
+import { FaAngleDown } from "react-icons/fa";
 
 export default function Navbar() {
   const [session, loading] = useSession();
+  const [profileOpen, setProfileOpen] = useState(false);
 
   return (
     <div className={styles.navbar}>
@@ -27,6 +31,7 @@ export default function Navbar() {
           </li>
         </ul>
       )}
+
       {session && !loading && (
         <ul className={styles.navList}>
           <li>
@@ -42,9 +47,30 @@ export default function Navbar() {
             </li>
           )}
           <li>
-            <a className={styles.navLink} onClick={() => signOut()}>
-              Logout
-            </a>
+            <div
+              className={styles.dropdown}
+              onClick={() => setProfileOpen(!profileOpen)}
+            >
+              <RoundedImage alt={session.user.name} width="35" height="35" />
+              <FaAngleDown />
+            </div>
+            <div
+              className={
+                profileOpen
+                  ? styles.dropdownContent
+                  : styles.dropdownContentClose
+              }
+            >
+              <div>
+                <p className={styles.dropwdownText}>Hi, {session.user.name}</p>
+                <Link href="">
+                  <a className={styles.dropdownLink}>Account Setting</a>
+                </Link>
+                <a className={styles.dropdownLink} onClick={() => signOut()}>
+                  Logout
+                </a>
+              </div>
+            </div>
           </li>
         </ul>
       )}

@@ -1,9 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession, signOut } from "next-auth/client";
 
 import styles from "./header.module.css";
+
+import RoundedImage from "../ui/RoundedImage";
+import { FaAngleDown } from "react-icons/fa";
 
 function Header() {
   const router = useRouter();
@@ -11,6 +14,7 @@ function Header() {
   const fromRef = useRef();
   const toRef = useRef();
   const dateRef = useRef();
+  const [profileOpen, setProfileOpen] = useState(false);
 
   function submitHandler(e) {
     e.preventDefault();
@@ -45,17 +49,45 @@ function Header() {
               </Link>
             </li>
             {session.user.role === 2 && (
+              <li>
+                <Link href="/dashboard/admin">
+                  <a className={styles.navLink}>Admin</a>
+                </Link>
+              </li>
+            )}
             <li>
-              <Link href="/dashboard/admin">
-                <a className={styles.navLink}>Admin</a>
-              </Link>
+              <div
+                className={styles.dropdown}
+                onClick={() => setProfileOpen(!profileOpen)}
+              >
+                <RoundedImage alt={session.user.name} width="35" height="35" />
+                <FaAngleDown className={styles.angleDown} />
+              </div>
+              <div
+                className={
+                  profileOpen
+                    ? styles.dropdownContent
+                    : styles.dropdownContentClose
+                }
+              >
+                <div>
+                  <p className={styles.dropwdownText}>
+                    Hi, {session.user.name}
+                  </p>
+                  <Link href="">
+                    <a className={styles.dropdownLink}>Account Setting</a>
+                  </Link>
+                  <a className={styles.dropdownLink} onClick={() => signOut()}>
+                    Logout
+                  </a>
+                </div>
+              </div>
             </li>
-          )}
-            <li>
+            {/* <li>
               <a className={styles.navLink} onClick={() => signOut()}>
                 Logout
               </a>
-            </li>
+            </li> */}
           </ul>
         )}
       </div>
