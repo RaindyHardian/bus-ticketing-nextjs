@@ -69,6 +69,9 @@ export default function BusTicketDetailPage(props) {
   };
 
   function openModal() {
+    if (!session) {
+      return toast.error("Please log in to your account");
+    }
     setIsOpen(true);
   }
 

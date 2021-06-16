@@ -1,8 +1,15 @@
 import db from "../../../db/config";
+import { getSession } from "next-auth/client";
 
 async function handler(req, res) {
   const trip_id = req.query.tripId;
   if (req.method === "PUT") {
+    const session = await getSession({ req });
+
+    if (session == null) {
+      return res.status(500).json({ message: "user not logged in" });
+    }
+
     const bus_id = req.body.bus_id;
     const start = req.body.start;
     const destination = req.body.destination;

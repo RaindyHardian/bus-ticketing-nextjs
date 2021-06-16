@@ -1,7 +1,14 @@
 import db from "../../../db/config";
+import { getSession } from "next-auth/client";
 
 async function handler(req, res) {
   if (req.method === "POST") {
+    const session = await getSession({ req });
+
+    if (session == null) {
+      return res.status(500).json({ message: "user not logged in" });
+    }
+
     const bus_id = req.body.bus_id;
     const start = req.body.start;
     const destination = req.body.destination;
@@ -35,6 +42,7 @@ async function handler(req, res) {
         .json({ success: 0, message: "Error, can't create new trip" });
     }
   }
+
   try {
     const startFilter = req.query.from ? req.query.from : "";
     const destinationFilter = req.query.to ? req.query.to : "";

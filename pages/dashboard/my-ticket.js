@@ -9,9 +9,15 @@ function MyTicket(props) {
     <Layout>
       <div className={styles.container}>
         <h1 className={styles.title}>My Ticket</h1>
-        {props.ticket.map((item) => (
-          <TicketItem key={item.ticket_id} ticket={item} />
-        ))}
+        {props.ticket.length > 0 ? (
+          props.ticket.map((item) => (
+            <TicketItem key={item.ticket_id} ticket={item} />
+          ))
+        ) : (
+          <div className={styles.noData}>
+            Sorry, you don't have any ticket yet
+          </div>
+        )}
       </div>
     </Layout>
   );

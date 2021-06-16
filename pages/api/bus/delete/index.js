@@ -1,7 +1,14 @@
 import db from "../../../../db/config/";
+import { getSession } from "next-auth/client";
 
 async function handler(req, res) {
   if (req.method === "POST") {
+    const session = await getSession({ req });
+
+    if (session == null) {
+      return res.status(500).json({ message: "user not logged in" });
+    }
+
     try {
       await db.query(`UPDATE bus SET active=0 WHERE bus_id=${req.body.bus_id}`);
       return res

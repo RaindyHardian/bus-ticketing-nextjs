@@ -1,8 +1,15 @@
 import db from "../../../db/config";
 import seatModel from "../../../db/SeatModel";
+import { getSession } from "next-auth/client";
 
 async function handler(req, res) {
   if (req.method === "PUT") {
+    const session = await getSession({ req });
+
+    if (session == null) {
+      return res.status(500).json({ message: "user not logged in" });
+    }
+
     const type = req.body.type;
     const nopol = req.body.nopol;
     const total_seat = req.body.total_seat;

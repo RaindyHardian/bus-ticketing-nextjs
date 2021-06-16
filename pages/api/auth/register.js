@@ -1,4 +1,5 @@
 import db from "../../../db/config";
+import { hashPassword } from "../../../utils/Auth";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -28,13 +29,15 @@ export default async function handler(req, res) {
     });
   }
 
+  const hashedPassword = await hashPassword(password);
+
   const insert = await db.query(
     "INSERT INTO user(name,email, password, user_role_id) VALUES (:name,:email,:password, :user_role_id);",
     {
       replacements: {
         name: name,
         email: email,
-        password: password,
+        password: hashedPassword,
         user_role_id: 1,
       },
       type: db.QueryTypes.INSERT,

@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 
 import db from "../../../db/config";
+import { verifyPassword } from "../../../utils/Auth";
 
 export default NextAuth({
   session: {
@@ -33,7 +34,12 @@ export default NextAuth({
           throw new Error("User not found");
         }
 
-        if (user[0].password !== credentials.password) {
+        const isValid = await verifyPassword(
+          credentials.password,
+          user[0].password
+        );
+
+        if (!isValid) {
           throw new Error("Could not log you in");
         }
 
@@ -48,7 +54,7 @@ export default NextAuth({
           role: role,
           user_id: user_id,
         };
-        
+
         return userJwt;
       },
     }),
