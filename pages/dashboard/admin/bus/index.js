@@ -22,7 +22,7 @@ export default function AdminListBus(props) {
     };
 
     const response = await fetch("/api/bus/delete", {
-      method: "POST",
+      method: "DELETE",
       body: JSON.stringify(submitData),
       headers: {
         "Content-Type": "application/json",

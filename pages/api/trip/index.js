@@ -51,7 +51,7 @@ async function handler(req, res) {
       : "trip_date";
 
     let data = await db.query(
-      `SELECT * FROM trip JOIN bus ON (trip.bus_id = bus.bus_id)  WHERE start LIKE :start AND destination LIKE :destination AND trip_date=${trip_dateFilter} AND trip.active=1 ORDER BY trip_id DESC;`,
+      `SELECT * FROM trip JOIN bus ON (trip.bus_id = bus.bus_id)  WHERE start LIKE :start AND destination LIKE :destination AND trip_date=${trip_dateFilter} AND trip.active=1 ORDER BY trip_date ASC;`,
       {
         replacements: {
           start: "%" + startFilter + "%",

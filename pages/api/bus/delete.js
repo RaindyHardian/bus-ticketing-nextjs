@@ -1,8 +1,8 @@
-import db from "../../../../db/config/";
+import db from "../../../db/config";
 import { getSession } from "next-auth/client";
 
 async function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === "DELETE") {
     const session = await getSession({ req });
 
     if (session == null) {
