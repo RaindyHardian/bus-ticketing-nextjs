@@ -199,7 +199,7 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { tripId } = params;
 
-  const res = await fetch("http://localhost:3000/api/trip/" + tripId);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/trip/` + tripId);
   const data = await res.json();
 
   if (!res.ok) {

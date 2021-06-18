@@ -223,7 +223,8 @@ function AllBusTicketPage(props) {
 
 export async function getServerSideProps(context) {
   const res = await fetch(
-    "http://localhost:3000/api/trip?" + new URLSearchParams(context.query)
+    `${process.env.NEXT_PUBLIC_URL}/api/trip?` +
+      new URLSearchParams(context.query)
   );
   const data = await res.json();
 
