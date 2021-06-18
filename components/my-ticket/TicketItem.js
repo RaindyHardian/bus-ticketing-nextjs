@@ -19,7 +19,7 @@ export default function TicketItem(props) {
     setLoading(true);
     if (isOpen === false) {
       const res = await fetch(
-        `http://localhost:3000/api/bus/${ticket.bus_id}`,
+        `/api/bus/${ticket.bus_id}`,
         {
           headers: {
             "Content-Type": "application/json",

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head"
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getSession, signIn } from "next-auth/client";
@@ -57,6 +58,14 @@ export default function Login() {
 
   return (
     <Layout>
+      <Head>
+        <title>Login to your account | BookYourSeat</title>
+        <meta
+          name="description"
+          content="BookYourSeat is a digital platform for booking your bus ticket online easily."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.container}>
         <h1 className={styles.title}>Login to your account</h1>
         <form className={styles.form} onSubmit={loginHandler}>

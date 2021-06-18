@@ -5,6 +5,7 @@ import { getSession } from "next-auth/client";
 import Layout from "../../../../components/layout/layout";
 import ListTable from "../../../../components/admin/bus/list/ListTable";
 import styles from "../../../../styles/admin.module.css";
+import Head from "next/head";
 
 export default function AdminListTrip(props) {
   const router = useRouter();
@@ -104,6 +105,14 @@ export default function AdminListTrip(props) {
 
   return (
     <Layout admin>
+      <Head>
+        <title>List Trip | BookYourSeat</title>
+        <meta
+          name="description"
+          content="BookYourSeat is a digital platform for booking your bus ticket online easily."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div>
         <h1 className={styles.title}>List Trip</h1>
         <ListTable columns={columns} data={data} />
@@ -114,7 +123,7 @@ export default function AdminListTrip(props) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  if (!session) {
+  if (!session || session.user.role !== 2) {
     return {
       redirect: {
         destination: "/account/login",
@@ -123,7 +132,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const res = await fetch("http://localhost:3000/api/trip", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/trip`, {
     headers: {
       "Content-Type": "application/json",
       cookie: context.req.headers.cookie,

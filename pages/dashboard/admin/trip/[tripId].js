@@ -5,6 +5,7 @@ import FormUpdateTrip from "../../../../components/admin/trip/update/Form";
 import ListTable from "../../../../components/admin/bus/list/ListTable";
 import { toast } from "react-toastify";
 import styles from "../../../../styles/admin.module.css";
+import Head from "next/head";
 
 export default function TripDetail(props) {
   const { bus, trip, ticket, seat } = props;
@@ -84,6 +85,16 @@ export default function TripDetail(props) {
 
   return (
     <Layout admin>
+      <Head>
+        <title>
+          Trip - {trip.start} to {trip.destination} | BookYourSeat
+        </title>
+        <meta
+          name="description"
+          content="BookYourSeat is a digital platform for booking your bus ticket online easily."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div>
         <h1 className={styles.title}>Detail Trip</h1>
         <FormUpdateTrip bus={bus} trip={trip} />
@@ -98,7 +109,7 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
   const tripId = context.params.tripId;
 
-  if (!session) {
+  if (!session || session.user.role !== 2) {
     return {
       redirect: {
         destination: "/account/login",
@@ -107,7 +118,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const res = await fetch(`http://localhost:3000/api/trip/${tripId}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/trip/${tripId}`, {
     headers: {
       "Content-Type": "application/json",
       cookie: context.req.headers.cookie,

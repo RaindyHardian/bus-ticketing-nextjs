@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { DateTime } from "luxon";
 import Image from "next/image";
 import styles from "./search.module.css";
+import Head from "next/head";
 
 export default function Search(props) {
   const { setPickupOption, setDropOption } = props;
@@ -60,6 +61,16 @@ export default function Search(props) {
 
   return (
     <form className={styles.form} onSubmit={searchHandler}>
+      <Head>
+        <title>
+          Bus from {from} to {to} | BookYourSeat
+        </title>
+        <meta
+          name="description"
+          content={`Book bus ticket from ${from} to ${to} easily and safe.`}
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.formGroup}>
         <input
           className={styles.formText}

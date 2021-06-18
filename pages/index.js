@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Header from "../components/home/header";
 import Image from "next/image";
 
@@ -7,6 +8,14 @@ import Layout from "../components/layout/layout";
 export default function Home() {
   return (
     <Layout home>
+      <Head>
+        <title>BookYourSeat: Book Bus Ticket Online</title>
+        <meta
+          name="description"
+          content="BookYourSeat is a digital platform for booking your bus ticket online easily."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Header />
       <div className={styles.howTo}>
         <p className={styles.subTitle}>QUICK AND SIMPLE SERVICE</p>

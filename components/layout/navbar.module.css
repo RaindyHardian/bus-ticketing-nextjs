@@ -35,6 +35,17 @@
   cursor: pointer;
 }
 
+.navLinkActive {
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 20px;
+  color: #412ff8;
+}
+
+.navLinkActive:hover {
+  cursor: pointer;
+}
+
 .dropdown {
   display: flex;
   flex-direction: row;

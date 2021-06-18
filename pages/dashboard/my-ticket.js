@@ -1,4 +1,5 @@
 import { getSession } from "next-auth/client";
+import Head from "next/head";
 import Layout from "../../components/layout/layout";
 import TicketItem from "../../components/my-ticket/TicketItem";
 
@@ -7,6 +8,11 @@ import styles from "../../styles/myTicket.module.css";
 function MyTicket(props) {
   return (
     <Layout>
+      <Head>
+        <title>Dashboard My Ticket | BookYourSeat</title>
+        <meta name="description" content="Check your ticket" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.container}>
         <h1 className={styles.title}>My Ticket</h1>
         {props.ticket.length > 0 ? (
@@ -34,7 +40,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const res = await fetch("http://localhost:3000/api/ticket/me", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/ticket/me`, {
     headers: {
       "Content-Type": "application/json",
       cookie: context.req.headers.cookie,

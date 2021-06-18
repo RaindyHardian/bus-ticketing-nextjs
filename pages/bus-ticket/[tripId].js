@@ -10,6 +10,7 @@ import styles from "../../styles/busTicketDetail.module.css";
 import InputNameItem from "../../components/bus-ticket-detail/InputNameItem";
 import Header from "../../components/bus-ticket-detail/Header";
 import SeatSelected from "../../components/bus-ticket-detail/SeatSelected";
+import Head from "next/head";
 
 const customStyles = {
   overlay: {
@@ -124,6 +125,16 @@ export default function BusTicketDetailPage(props) {
 
   return (
     <Layout>
+      <Head>
+        <title>
+          Bus from {props.trip.start} to {props.trip.destination} | BookYourSeat
+        </title>
+        <meta
+          name="description"
+          content={`Book bus ticket from ${props.trip.start} to ${props.trip.destination} easily and safe.`}
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.container}>
         <Header trip={props.trip} />
 

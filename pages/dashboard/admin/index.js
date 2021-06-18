@@ -1,4 +1,5 @@
 import { getSession } from "next-auth/client";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import Layout from "../../../components/layout/layout";
 import styles from "../../../styles/dashboardIndex.module.css";
@@ -8,6 +9,14 @@ export default function DashboardIndex() {
 
   return (
     <Layout admin>
+      <Head>
+        <title>Dashboard | BookYourSeat</title>
+        <meta
+          name="description"
+          content="BookYourSeat is a digital platform for booking your bus ticket online easily."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div>
         <h1 className={styles.title}>Welcome to admin dashboard</h1>
         <p className={styles.subTitle}>
@@ -63,7 +72,7 @@ export default function DashboardIndex() {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  if (!session) {
+  if (!session || session.user.role !== 2) {
     return {
       redirect: {
         destination: "/account/login",

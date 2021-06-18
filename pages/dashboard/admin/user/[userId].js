@@ -5,6 +5,7 @@ import ListTable from "../../../../components/admin/bus/list/ListTable";
 import { toast } from "react-toastify";
 import InfoDetail from "../../../../components/admin/user/InfoDetail";
 import styles from "../../../../styles/admin.module.css";
+import Head from "next/head";
 
 export default function UserDetail(props) {
   const { user, ticket } = props;
@@ -80,6 +81,14 @@ export default function UserDetail(props) {
 
   return (
     <Layout admin>
+      <Head>
+        <title>User {user.name} | BookYourSeat</title>
+        <meta
+          name="description"
+          content="BookYourSeat is a digital platform for booking your bus ticket online easily."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div>
         <h1 className={styles.title}>User Detail Information</h1>
         <InfoDetail user={user} />
@@ -93,7 +102,7 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
   const userId = context.params.userId;
 
-  if (!session) {
+  if (!session || session.user.role !== 2) {
     return {
       redirect: {
         destination: "/account/login",
@@ -102,7 +111,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const res = await fetch(`http://localhost:3000/api/user/${userId}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/${userId}`, {
     headers: {
       "Content-Type": "application/json",
       cookie: context.req.headers.cookie,

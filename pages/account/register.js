@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/client";
@@ -96,6 +97,14 @@ export default function Register() {
 
   return (
     <Layout>
+      <Head>
+        <title>Register your account | BookYourSeat</title>
+        <meta
+          name="description"
+          content="BookYourSeat is a digital platform for booking your bus ticket online easily."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className={styles.container}>
         <h1 className={styles.title}>Let's create your account</h1>
         <form className={styles.form} onSubmit={registerHandler}>
