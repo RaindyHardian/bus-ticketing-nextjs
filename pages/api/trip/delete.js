@@ -9,6 +9,10 @@ async function handler(req, res) {
       return res.status(500).json({ message: "user not logged in" });
     }
 
+    if (session.user.role !== 2) {
+      return res.status(500).json({ message: "Unauthorized" });
+    }
+
     try {
       await db.query(
         `UPDATE trip SET active=0 WHERE trip_id=${req.body.trip_id}`

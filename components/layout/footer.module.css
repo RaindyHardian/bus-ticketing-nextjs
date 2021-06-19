@@ -35,6 +35,12 @@
   word-spacing: 5px;
 }
 
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 50px;
+  }
+}
+
 @media screen and (max-width: 420px) {
   .footer {
     grid-template-columns: 1fr;

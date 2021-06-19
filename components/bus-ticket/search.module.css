@@ -49,6 +49,12 @@
   padding: 3px 10px;
 }
 
+@media screen and (max-width: 768px) {
+  .form {
+    padding: 30px 25px;
+  }
+}
+
 @media screen and (max-width: 420px) {
   .form {
     flex-direction: column;

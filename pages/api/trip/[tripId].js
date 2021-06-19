@@ -10,6 +10,10 @@ async function handler(req, res) {
       return res.status(500).json({ message: "user not logged in" });
     }
 
+    if (session.user.role !== 2) {
+      return res.status(500).json({ message: "Unauthorized" });
+    }
+
     const bus_id = req.body.bus_id;
     const start = req.body.start;
     const destination = req.body.destination;

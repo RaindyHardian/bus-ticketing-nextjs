@@ -12,6 +12,12 @@
   font-weight: 600;
 }
 
+@media screen and (max-width: 768px) {
+  .mainContainer {
+    padding: 20px 25px;
+  }
+}
+
 @media screen and (max-width: 420px) {
   .mainContainer {
     flex-direction: column;

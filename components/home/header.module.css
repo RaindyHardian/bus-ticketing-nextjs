@@ -1,6 +1,5 @@
 /* HOME HEADER */
 .header {
-  min-width: fit-content;
   background: linear-gradient(180deg, #071332 50%, #132e74 100%);
   padding: 0 50px 30px 50px;
 }
@@ -174,7 +173,35 @@
   color: white;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 1280px) {
+  .formGroup {
+    padding: 5px 10px 15px 10px;
+  }
+
+  .label {
+    font-size: 18px;
+  }
+
+  .formText {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .formGroup {
+    padding: 5px 10px 15px 10px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .formText {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .header {
     min-width: unset;
     padding: 0 20px 30px 20px;
