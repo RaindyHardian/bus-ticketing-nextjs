@@ -33,7 +33,7 @@ async function handler(req, res) {
       currentPage = 1;
     }
 
-    let perPage = 20;
+    let perPage = 200;
     let lastIdx = currentPage * perPage;
     let firstIdx = lastIdx - perPage;
     let finalData = ticketdata.slice(firstIdx, lastIdx);

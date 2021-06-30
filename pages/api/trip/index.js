@@ -69,7 +69,7 @@ async function handler(req, res) {
     if (currentPage === undefined || currentPage === "") {
       currentPage = 1;
     }
-    let perPage = 20;
+    let perPage = 200;
     let lastIdx = currentPage * perPage;
     let firstIdx = lastIdx - perPage;
     let finalData = data.slice(firstIdx, lastIdx);

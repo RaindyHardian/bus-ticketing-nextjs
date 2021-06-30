@@ -80,7 +80,6 @@ async function handler(req, res) {
       success: 1,
       busdata: data,
       dataLength: data.length,
-      // perPage: perPage,
     });
   } catch (err) {
     console.log(err);
